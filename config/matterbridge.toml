@@ -1,0 +1,94 @@
+[general]
+RemoteNickFormat="[{PROTOCOL}] <{NICK}> "
+TranslationAttribution=" [translated by :google:]"
+PreserveThreading=true
+ShowUserTyping=false
+MediaDownloadSize=1000000
+ShowJoinPart=false
+NoSendJoinPart=false
+# When someone is speaking from a platform without avatars, generate one from usernames
+IconURL="https://github.com/identicons/{NICK}.png"
+
+[slack]
+
+[slack.hci]
+Token="${SLACK_TOKEN}" # real user who may be a bot: matter 
+
+[discord.hci]
+# You can get your token by following the instructions on
+# https://github.com/42wim/matterbridge/wiki/Discord-bot-setup
+# If you want roles/groups mentions to be shown with names instead of ID,
+# you'll need to give your bot the "Manage Roles" permission.
+Token="${DISCORD_TOKEN}"
+Server="${DISCORD_SERVER_ID}" # picked from guilds the bot is connected to
+
+[gitter.hci]
+#You can get your token by going to https://developer.gitter.im/docs/welcome and SIGN IN
+Token="${GITTER_TOKEN}"
+#This improves the situation where a gitter user uploads a picture/file, just relay the link instead of the Markdown
+ReplaceMessages=[["^\\[!\\[[^\\]]+\\]\\(https?:\\/\\/files\\.gitter\\.im\\/[^\\/]+\\/[^\\/]+\\/[^\\/]+\\/thumb\\/[^\\)]+\\)\\]\\(([^\\)]+)\\)$", "$1"], ["\\[[^\\]]+\\]\\((https:\\/\\/files\\.gitter\\.im\\/[^\\/]+\\/[^\\/]+\\/[^\\/]+\\/[^\\)]+)\\)$", "$1"]]
+
+[telegram.hci]
+#See https://core.telegram.org/bots#6-botfather 
+#and https://www.linkedin.com/pulse/telegram-bots-beginners-marco-frau
+Token="${TELEGRAM_TOKEN}"
+RemoteNickFormat="({PROTOCOL}) &lt;{NICK}&gt; "
+MessageFormat="HTMLNick"
+
+[[gateway]]
+name="gateway1"
+enable=true
+
+[[gateway.inout]]
+account="discord.hci"
+channel="general"
+
+[[gateway.inout]]
+account="slack.hci"
+channel="general"
+
+[[gateway.inout]]
+account="gitter.hci"
+channel="hci-test/hci-onestopshop"
+
+    # The channel key in each gateway is mapped to a similar group chat ID on the chat platform
+    # To find the group chat ID for different platforms, refer to the table below
+    #
+    # Platform   |   Identifier name  |            Example            | Description
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #            |      channel       |            general            | Do not include the # symbol
+    #  discord   |    channel id      |          ID:123456789         | See https://github.com/42wim/matterbridge/issues/57
+    #            | category/channel   |          Media/gaming         | Without # symbol. If you're using discord categories to group your channels
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #   gitter   |  username/room     |            general            | As seen in the gitter.im URL
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #   hipchat  |    id_channel      |         example needed        | See https://www.hipchat.com/account/xmpp for the correct channel
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #    irc     |      channel       |            #general           | The # symbol is required and should be lowercase!
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    # mattermost |      channel       |            general            | This is the channel name as seen in the URL, not the display name
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #   matrix   | #channel:server    |    #yourchannel:matrix.org    | Encrypted rooms are not supported in matrix
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #   msteams  |      threadId      |    19:82abcxx@thread.skype    | You'll find the threadId in the URL
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #   mumble   |    channel id      |              42               | The channel ID, as shown in the channel's "Edit" window
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    # rocketchat |      channel       |            #channel           | # is required for private channels too
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #   slack    |   channel name     |            general            | Do not include the # symbol
+    #            |    channel id      |           ID:C123456          | The underlying ID of a channel. This doesn't work with
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #   steam    |      chatid        |         example needed        | The number in the URL when you click "enter chat room" in the browser
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #   nctalk   |      token         |           xs25tz5y            | The token in the URL when you are in a chat. It will be the last part of the URL.
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #  telegram  |      chatid        |          -123456789           | A large negative number. see https://www.linkedin.com/pulse/telegram-bots-beginners-marco-frau
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #  whatsapp  |     group JID      | 48111222333-123455678999@g.us | A unique group JID. If you specify an empty string, bridge will list all the possibilities
+    #            |    "Group Name"    |         "Family Chat"         | if you specify a group name, the bridge will find hint the JID to specify. Names can change over time and are not stable.
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #    xmpp    |      channel       |            general            | The room name
+    # -------------------------------------------------------------------------------------------------------------------------------------
+    #   zulip    | stream/topic:topic |     general/off-topic:food    | Do not use the # when specifying a topic
+    # -------------------------------------------------------------------------------------------------------------------------------------

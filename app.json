@@ -1,11 +1,11 @@
 {
-    "name": "Matterbridge-Heroku",
+    "name": "OneStopShop-Bridge",
     "description": "Deploy Matterbridge to Heroku",
-    "repository": "https://github.com/cadecairos/matterbridge-heroku",
+    "repository": "https://github.com/adriandarian/OneStopShop-Bridge",
     "keywords": ["mattermost", "matterbridge", "IRC"],
     "success_url": "/",
     "buildpacks": [{
-        "url": "http://github.com/cadecairos/matterbridge-heroku.git#master"
+        "url": "https://github.com/adriandarian/OneStopShop-Bridge.git#master"
     }],
     "env": {
         "MATTERBRIDGE_VERSION": {

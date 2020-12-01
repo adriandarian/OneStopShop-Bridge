@@ -1,5 +1,5 @@
 [general]
-RemoteNickFormat="{NICK} ({BRIDGE}): "
+RemoteNickFormat="{NICK}"
 PreserveThreading=true
 # Show messages announcing when people arrive/leave remote channels
 #[slack.example]
@@ -23,7 +23,7 @@ Token="${SLACK_TOKEN}" # real user who may be a bot: matter
 # If you want roles/groups mentions to be shown with names instead of ID,
 # you'll need to give your bot the "Manage Roles" permission.
 Token="${DISCORD_TOKEN}"
-Server="${DISCORD_SERVERID}" # picked from guilds the bot is connected to
+Server="${DISCORD_SERVER_ID}" # picked from guilds the bot is connected to
 # RemoteNickFormat="[{PROTOCOL}] @{NICK} "
 
 [[gateway]]
@@ -32,8 +32,8 @@ enable=true
 
 [[gateway.inout]]
 account="discord.hci"
-channel="bridge"
+channel="general"
 
 [[gateway.inout]]
 account="slack.hci"
-channel="bridge"
+channel="general"

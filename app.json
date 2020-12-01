@@ -2,7 +2,7 @@
     "name": "Matterbridge-Heroku",
     "description": "Deploy Matterbridge to Heroku",
     "repository": "https://github.com/cadecairos/matterbridge-heroku",
-    "keywords": ["mattermost", "bridge", "IRC"],
+    "keywords": ["mattermost", "matterbridge", "IRC"],
     "success_url": "/",
     "buildpacks": [{
         "url": "http://github.com/cadecairos/matterbridge-heroku.git#master"

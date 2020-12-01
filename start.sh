@@ -22,7 +22,7 @@ lib/envsubst < config/config-heroku-template.toml > config/config-heroku.toml
 # Pass SIGTERM to Matterbridge proc #
 #####################################
 function _term {
-  echo "Sending SIGTERM to bridge"
+  echo "Sending SIGTERM to matterbridge"
 
   kill --TERM "$PID" 2>/dev/null
 }
